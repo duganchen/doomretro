@@ -47,12 +47,19 @@ sudo: required
 dist: trusty
 
 addons:
+    sources:
+        -llvm-toolchain-precise
+        -ubuntu-toolchain-r-test
     apt:
         packages:
             - cmake3
             - libsdl2-dev
             - libsdl2-mixer-dev
             - libsdl2-image-dev
+
+before_install:
+    - sudo apt-get -qq update
+    - sudo apt-get install -y cmake3
 
 script:
     - mkdir build && cd build && cmake .. && make
